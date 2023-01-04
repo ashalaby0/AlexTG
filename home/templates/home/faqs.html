@@ -1,0 +1,35 @@
+{% extends 'base_no_footer.html' %}
+
+
+{% block title %}
+<title>FAQs</title>
+{% endblock %}
+
+{% block content %}
+
+<section class="faq text-center">
+    <div class="container">
+        <h1>Frequently Asked Questions</h1>
+        <p class="lead">Here You Will Find All Questions You Are Searching For And The Full Knowledgebase</p>
+    </div>
+</section>
+
+<section class="faq-questions">
+    {% for faq in faqs %}
+
+    <div class="container">
+        <p>
+            <button class="btn btn-warning" type="button" data-bs-toggle="collapse" data-bs-target="#Question3" aria-expanded="false" aria-controls="collapseExample">
+              {{faq.question}}
+            </button>
+        </p>
+        <div class="collapse" id="Question3">
+            <div class="card card-body">
+                {{faq.answer}}
+            </div>
+        </div>
+    </div>
+
+    {% endfor %}
+</section>
+    {% endblock %}

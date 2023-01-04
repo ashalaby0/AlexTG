@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Policy</title>
+{% endblock %}
+
+
+{% block content %}
+    <!-- Start Policy -->
+    <div class="policy text-center pt-5 pb-5">
+
+        <div class="container">
+            <div class="main-title mt-5 mb-5 position-relative">
+                <h1 class="terms">Terms and Conditions</h1>
+            </div>
+            <div class="row">
+                {% for rule in rules %}
+                <div class="col-md-12 col-lg-12">
+                    <div class="feat">
+                      <div class="icon-holder position-relative">
+                        <i class="fa-solid fa-{{forloop.counter}} position-absolute bottom-0 numberr"></i>
+                      </div>
+                      <p class="policy  lh-lg">
+                          {{rule.content}}
+                      </p>
+                    </div>
+                  </div>
+                {% endfor %}
+              </div>
+        </div>
+    </div>
+    <!-- End Policy -->
+
+{% endblock %}

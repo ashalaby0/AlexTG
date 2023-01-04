@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+{% block title %}
+<title>Home</title>
+{% endblock %}
+
+
+{% block content %}
+
+    <!-- Start Breif -->
+    <div class="brief">
+        <div class="container">
+          <div class="text">
+            <h1>Service You Can Rely On</h1>
+            <p class="fs-6">ALEX T G has been offering clients throughout New Jersey and the surrounding area quality transportation services for many years. Excellent service begins with excellent people and experiences which is why we put so much into choosing the best people to join our team. You’ll always have a driver who knows punctuality, safe driving, and good customer service inside and out. We aim to meet your needs and exceed your expectations of what a Limousine Service can and should be.</p>
+            <a class="btn btn-outline-warning" href="{% url 'booking' }">Book Your Ride</a>
+          </div>
+          <div class="image-brief">
+            <img src="{% static 'images/Limousine-pana_1.png' %}" alt="" />
+          </div>
+        </div>
+        <a href="#services" class="go-down">
+          <i class="fas fa-angle-double-down fa-2x"></i>
+        </a>
+      </div>
+      <!-- End Breif -->
+  
+  
+      <!-- Start Services -->
+      <section id="services" class="services text-center">
+  
+        <div class="main-title mt-5 mb-5 position-relative">
+          <img class="mb-4" src="{% static 'images/title.png' %}" alt="" />
+          <h2>Our Services</h2>
+        </div>
+  
+        <div class="container">
+        
+          <div id="carousel_testimonials" class="carousel slide" data-bs-ride="carousel">
+                          
+            <div class="carousel-inner">
+                {% for ride in rides %}
+                {% if not forloop.counter0 %}
+                  <div class="carousel-item active">
+                {% else %}
+                  <div class="carousel-item">
+                {% endif %}
+                <p class="lead fs-8"><img src="{% static 'images/passenger.png' %}" alt="passenger" width="30" height="30" class="logo d-inline-block align-text-top">
+                    {{ride.no_of_passengers}} passengers</p>
+                  <p class="lead"><img src="{% static 'images/travel-bag.png' %}" alt="passenger" width="30" height="30" class="logo d-inline-block align-text-top">
+                    {{ride.no_of_bags}} Bags</p>
+                  <span>{{ride.name}}</span>
+              </div>  
+                {% endfor %}
+            </div>
+            
+            <ol class="carousel-indicators">
+                {% for ride in rides %}
+                    {% if not forloop.counter0 %}
+                        <li data-bs-target="#carousel_testimonials" data-bs-slide-to="{{forloop.counter0}}" class="active">
+                    {% else %}
+                        <li data-bs-target="#carousel_testimonials" data-bs-slide-to="{{forloop.counter0}}">
+                    {% endif %}
+                            <img src="{{ ride.photo.url }}" width="100" height="100" alt="{{ ride.name }}" />
+                        </li>
+                {% endfor %}
+            </ol>
+            
+          </div>
+  
+       </div>
+  
+      </section>
+      <!-- End Services -->
+  
+      
+      <!-- Start Why Alex -->
+      <div class="features text-center pt-5 pb-5">
+  
+          <div class="container">
+  
+            <div class="main-title mt-5 mb-5 position-relative">
+              <img class="mb-4" src="{% static 'images/title.png' %}" alt="" />
+              <h2>Why Alex T G</h2>
+              <p class="text-black-50 text-uppercase">Professional Luxury Services</p>
+            </div>
+  
+            <div class="row">
+              <div class="col-md-6 col-lg-4">
+                <div class="feat">
+                  <div class="icon-holder position-relative">
+                    <i class="fa-solid fa-1 position-absolute bottom-0 number"></i>
+                    <i class="fa-solid fa-cart-flatbed-suitcase fa-4x position-absolute bottom-0 icon"></i>
+                  </div>
+                  <h4 class="mb-3 mt-3 text-uppercase">Airport Drop-Off & Pickup</h4>
+                  <p class="text-black-50 lh-lg">
+                      We've got years of experience with executing Airport Drop-Off & Pickup services. We know you want to arrive comfortably and on time and we are the people to guarantee just that. We take pride in all of our vehicles and work hard to take you to any location in the greater New Jersey area no matter how bad the traffic may be. We invest the necessary time in communication and preparation to guarantee your safe arrival.
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-4">
+                <div class="feat">
+                  <div class="icon-holder position-relative">
+                    <i class="fa-solid fa-2 position-absolute bottom-0 number"></i>
+                    <i class="fa-solid fa-user-shield fa-4x position-absolute bottom-0 icon"></i>
+                  </div>
+                  <h4 class="mb-3 mt-3 text-uppercase">Private Limo Driver</h4>
+                  <p class="text-black-50 lh-lg">
+                      Are you interested in a transportation service with years of experience? We make it a point to ensure you get the highest quality service around the clock. Our Private Limo Driver services are set apart from the rest by our consistency, reliability, communication and quality. Every member of our team is highly skilled, work is timely and satisfaction is guaranteed.
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-4">
+                <div class="feat">
+                  <div class="icon-holder position-relative">
+                    <i class="fa-solid fa-3 position-absolute bottom-0 number"></i>
+                    <i class="fa-solid fa-champagne-glasses fa-4x position-absolute bottom-0 icon"></i>
+                  </div>
+                  <h4 class="mb-3 mt-3 text-uppercase">Parties!</h4>
+                  <p class="text-black-50 lh-lg">
+                      Sometimes getting where you need to go can be more than just a job, it can be an enjoyable experience. With our Group Limo Party Rental services, that’s what we set out to do. We know how important it is for your journey to not only be worry free, but to be a joy. Talk to us and we’ll make sure you get the results you're after, including guaranteed quality service at an affordable price. Contact us for more info or to reserve a ride.
+                  </p>
+                </div>
+              </div>
+            </div>
+  
+          </div>
+          
+      </div>
+      <!-- End Why Alex -->
+
+      
+{% endblock %}

@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Profile</title>
+{% endblock %}
+
+
+{% block content %}
+    <div class="content w-full">
+        <div class="profile-page m-20">
+    
+          <div class="overview bg-white rad-10 d-flex align-center">
+    
+            <div class="avatar-box txt-c p-20">
+                {% if photo %}
+                <img class="rad-half mb-10" src="{{ photo.url }}" alt="Upload Your Photo" />
+                {% else %}
+                <div class="rad-half mb-10" data-bs-toggle="tooltip" title="Upload Your Photo">
+                    <i class="fa fa-user" style="width: 40%;height: 40%;"></i>
+                </div>
+                {% endif %}
+                <a href="{% url 'setting' %}"><i class="fa fa-edit"></i></a>
+              <h3 class="m-0">{{user.username}}</h3>
+            </div>
+    
+            <div class="info-box w-full txt-c-mobile">
+              <!-- Start Information Row -->
+              <div class="box p-20 d-flex align-center">
+                <h4 class="c-blue fs-11 m-3 w-full"></h4>
+                <div class="fs-14">
+                  <span class="c-grey">Full Name:</span>
+                  <span>{{user.get_full_name}}</span>
+                </div>
+                <div class="fs-14">
+                  <span class="c-grey">Gender:</span>
+                  <span>{{user.gender}}</span>
+                </div>
+                <div class="fs-14">
+                  <span class="c-grey">Country:</span>
+                  <span>{{user.country}}</span>
+                </div>
+              </div>
+              <!-- End Information Row -->
+    
+              <!-- Start Information Row -->
+              <div class="box p-20 d-flex align-center">
+                <h4 class="c-blue w-full fs-11 m-3"></h4>
+                <div class="fs-14">
+                  <span class="c-grey">Email:</span>
+                  <span>{{user.email}}</span>
+                </div>
+                <div class="fs-14">
+                  <span class="c-grey">Phone:</span>
+                  <span>{{user.phone}}</span>
+                </div>
+                <div class="fs-14">
+                  <span class="c-grey">Date Of Birth:</span>
+                  <span>{{user.date_of_birth}}</span>
+                </div>
+              </div>
+              <!-- End Information Row -->
+              
+            </div>
+          </div>
+    
+          <div class="other-data d-flex gap-20">
+    
+            <div class="activities p-20 bg-white rad-10 mt-20">
+    
+              <h2 class="mt-0 mb-20">Past Trips</h2>
+    
+              <ul class="m-0">
+                {% if past_trips %}
+                {% for trip in past_trips %}
+                <li class="d-flex align-center mt-15">
+                  <span class="key bg-green mr-15 d-block rad-half"></span>
+                  <div class="pl-15 green">
+                    <p class="fs-14 fw-bold mt-0 mb-5">From  {{ trip.source }}</p>
+                    <p class="fs-14 fw-bold mt-0 mb-5">To  {{ trip.destination }}</p>
+                    <span class="fs-13 c-grey">{{trip.start_time}}</span><span>{{trip.price}}$</span>
+                  </div>
+                </li>
+                {% endfor %}
+                {% else %}
+                <li class="d-flex align-center mt-15">
+                  <span class="key bg-green mr-15 d-block rad-half"></span>
+                  <div class="pl-15 green">
+                    <span class="fs-13 c-grey">No Past Trips</span>
+                  </div>
+                </li>
+                {% endif %}
+    
+                
+              </ul>
+    
+            </div>
+            
+            <div class="activities p-20 bg-white rad-10 mt-20">
+    
+              <h2 class="mt-0 mb-20">Upcoming Trips</h2>
+    
+              <ul class="m-0">
+                {% if past_trips %}
+                {% for trip in upcomming_trips %}
+                <li class="d-flex align-center mt-15">
+                  <span class="key bg-blue mr-15 d-block rad-half"></span>
+                  <div class="pl-15 blue">
+                    <p class="fs-14 fw-bold mt-0 mb-5">From  {{ trip.source }}</p>
+                    <p class="fs-14 fw-bold mt-0 mb-5">To  {{ trip.destination }}</p>
+                    <span class="fs-13 c-grey">{{trip.start_time}}</span><span>{{trip.price}}$</span>
+                </div>
+                  
+                </li>
+                {% endfor %}
+                {% else %}
+                <li class="d-flex align-center mt-15">
+                  <span class="key bg-blue mr-15 d-block rad-half"></span>
+                  <div class="pl-15 blue">
+                    <span class="fs-13 c-grey">No Scheduled Trips</span>
+                  </div>
+                </li>
+                {% endif %}
+              </ul>
+    
+            </div>
+    
+          </div>
+    
+        </div>
+    
+        
+        
+      </div>
+
+{% endblock %}

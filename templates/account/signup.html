@@ -1,0 +1,64 @@
+{% extends 'base_no_footer.html' %}
+{% load static %}
+
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/signup.css'%}" />
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+
+{% endblock %}
+{% block content %}
+<div class="signup-box">
+  <div class="page-nav-line">
+    <div>
+      <a class=" text-decoration-none" href="{% url 'home' %}" style="color: var(--main-color)">
+        Home
+      </a>
+    </div>
+    <div class=""> &nbsp; &gt; &nbsp;</div>
+    <div>Sign Up</div>
+  </div>
+  <h1>Sign Up</h1>
+  <h4>It's free and only takes a minute</h4>
+  <form method="post">
+    {% csrf_token %}
+    <div class="">
+      {{ form.username }}
+      <div class="">{{ form.username.errors }}</div>
+    </div>
+
+    <div class="">
+      {{ form.password1 }}
+      <div class="">{{ form.password1.errors }}</div>
+    </div>
+
+    <div class="">
+      {{ form.password2 }}
+      <div class="">{{ form.password2.errors }}</div>
+    </div>
+
+
+    <div class="">
+      {{ form.email }}
+      <div class="">{{ form.email.errors }}</div>
+    </div>
+
+    <div class="">
+      {{ form.phone }}
+      <div class="">{{ form.phone.errors }}</div>
+    </div>
+
+    <input type="submit" value="Submit" class="btn"/>
+    <closeform></closeform>
+  </form>
+  <p>
+    By clicking the Sign Up button,you agree to our <br />
+    <a href="#">Terms and Condition</a> and <a href="#">Policy Privacy</a>
+  </p>
+</div>
+<p class="para-2">
+  Already have an account? <a href="{{ login_url }}">Login here</a>
+</p>
+
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'base_no_footer.html' %}
+{% load static %}
+
+
+{% block title %}
+<title>Contact Us</title>
+{% endblock %}
+{% block style %}
+
+<!-- removing bullets from formfield error -->
+<style>
+    .errorlist{
+        list-style-type: none;
+    } 
+</style>
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+
+{% endblock %}
+{% block content %}
+<div class="wrapper">
+    <h1>Contact Us</h1>
+    <p>Feel free to contact us for more information or to make a reservation!</p>
+    <form method="post">
+        {% csrf_token %}
+        <div>
+            {{form.full_name}}
+            <div class="form-errors text-danger list-unstyled">{{ form.full_name.errors }}</div>
+        </div>
+        <div class="form-group">
+            {{form.email}}
+            <div class="form-errors text-danger list-unstyled">{{ form.email.errors }}</div>
+          </div>
+        <div class="form-group">
+            {{form.phone_number}}
+            <div class="form-errors text-danger list-unstyled">{{ form.phone_number.errors }}</div>
+          </div>
+          <div class="form-group">
+            {{form.message}}
+            <div class="form-errors text-danger list-unstyled" >{{ form.message.errors }}</div>
+          </div>
+          <button type="submit">Submit</button>
+        </form>
+    </div>
+{% endblock %}

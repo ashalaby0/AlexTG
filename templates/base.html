@@ -1,0 +1,54 @@
+{% extends 'base_no_footer.html' %}
+
+{% load static %}
+{% block footer %}
+    <!-- Start Footer -->
+    <div class="footer pt-5 pb-5 text-white-50 text-center text-md-start">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-lg-6">
+            <div class="info mb-5">
+              <a class="navbar-brand" href="#">
+                  <img src="{% static 'images/limousine.png' %}" alt="Logo" width="40" height="40" class="logo d-inline-block align-text-top">
+                  Alex T G
+              </a>
+              <p class="mb-5">
+                  Getting You Where You Need To Go
+              </p>
+              <div class="copyright">
+                Created By <span>AS Software</span>
+                <div>&copy; 2023 - <span>Alex T G</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-6">
+            <div class="contact">
+              <h5 class="text-light">Contact Us</h5>
+              <p class="lh-lg mt-3 mb-5">Feel free to contact us for more information or to make a reservation!</p>
+              <a class="btn btn-warning" href="{% url 'contact_us' %}">Contact Us</a>
+              <ul class="d-flex mt-5 list-unstyled gap-3">
+                <li>
+                  <a class="d-block text-light" href="#"
+                    ><i class="fa-brands fa-facebook fa-lg facebook rounded-circle p-2"></i
+                  ></a>
+                </li>
+                <li>
+                  <a class="d-block text-light" href="#"
+                    ><i class="fa-brands fa-twitter fa-lg twitter rounded-circle p-2"></i
+                  ></a>
+                </li>
+                <li>
+                  <a class="d-block text-light" href="#"
+                    ><i class="fa-brands fa-instagram fa-lg instagram rounded-circle p-2"></i
+                  ></a>
+                </li>
+                <li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  <!-- End Footer -->
+  
+{% endblock %}

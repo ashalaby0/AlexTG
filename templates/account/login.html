@@ -1,0 +1,73 @@
+{% extends 'base_no_footer.html' %}
+{% load static %}
+
+{% block head %} 
+
+<title>Login</title>
+<link href="{% static 'css/login.css' %}" rel="stylesheet">
+<link href="{% static 'css/style.css' %}" rel="stylesheet">
+{% endblock %}
+
+
+{% block content %}
+{% load account socialaccount %}
+{% get_providers as socialaccount_providers %}
+  <div class="wrapper">
+    <div class="page-nav-line">
+      <div>
+        <a class=" text-decoration-none" href="{% url 'home' %}" style="color: var(--main-color)">
+          Home
+        </a>
+      </div>
+      <div class=""> &nbsp; &gt; &nbsp;</div>
+      <div>Login</div>
+    </div>
+    <h1>Hello Again!</h1>
+    <p>Welcome back you've <br> been missed!</p>
+    <form action="{% url 'account_login' %}" class="sign-in-form" method="post">
+      {% csrf_token %}
+
+      <!-- form errors -->
+      {% if form.errors %}
+      <div class="form-errors">
+      {% for key, val in form.errors.items %}
+        {{val}}
+        {% endfor %}
+      </div>
+      {% endif %}
+
+
+
+      <div>
+        {{form.login}}
+        <div class="form-errors">{{ form.login.errors }}</div>
+      </div>
+
+      <div>
+        {{form.password}}
+        <div class="form-errors">{{ form.password.errors }}</div>
+      </div>
+
+      <p class="recover">
+        <a href="{% url 'account_reset_password' %}">Forget Password</a>
+      </p>
+      <button type="submit">Sign in</button>
+    </form>
+    <p class="or">
+      ----- or continue with -----
+    </p>
+    <div class="icons">
+      <div class="social-media d-flex justify-content-center gap-1">
+
+        {% if socialaccount_providers %}
+        {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+        {% include "socialaccount/snippets/login_extra.html" %}
+        {% endif %}
+      </div>
+    </div>
+    <div class="not-member">
+      Not a member? <a href="{% url 'signup' %}">Register Now</a>
+    </div>
+  </div>
+
+{% endblock %}
