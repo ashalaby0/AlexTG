@@ -13,8 +13,8 @@
           <div class="overview bg-white rad-10 d-flex align-center">
     
             <div class="avatar-box txt-c p-20">
-                {% if photo %}
-                <img class="rad-half mb-10" src="{{ photo.url }}" alt="Upload Your Photo" />
+                {% if user.photo %}
+                <img class="rad-half mb-10" src="{{ user.photo.url }}" alt="Upload Your Photo" />
                 {% else %}
                 <div class="rad-half mb-10" data-bs-toggle="tooltip" title="Upload Your Photo">
                     <i class="fa fa-user" style="width: 40%;height: 40%;"></i>
@@ -26,25 +26,22 @@
     
             <div class="info-box w-full txt-c-mobile">
               <!-- Start Information Row -->
-              <div class="box p-20 d-flex align-center">
+              <div class="box p-20 d-flex align-center justify-content-between">
                 <h4 class="c-blue fs-11 m-3 w-full"></h4>
                 <div class="fs-14">
                   <span class="c-grey">Full Name:</span>
                   <span>{{user.get_full_name}}</span>
                 </div>
+               
                 <div class="fs-14">
-                  <span class="c-grey">Gender:</span>
-                  <span>{{user.gender}}</span>
-                </div>
-                <div class="fs-14">
-                  <span class="c-grey">Country:</span>
-                  <span>{{user.country}}</span>
+                  <span class="c-grey">Address:</span>
+                  <span>{{user.address}}</span>
                 </div>
               </div>
               <!-- End Information Row -->
     
               <!-- Start Information Row -->
-              <div class="box p-20 d-flex align-center">
+              <div class="box p-20 d-flex align-center justify-content-between">
                 <h4 class="c-blue w-full fs-11 m-3"></h4>
                 <div class="fs-14">
                   <span class="c-grey">Email:</span>
@@ -54,10 +51,7 @@
                   <span class="c-grey">Phone:</span>
                   <span>{{user.phone}}</span>
                 </div>
-                <div class="fs-14">
-                  <span class="c-grey">Date Of Birth:</span>
-                  <span>{{user.date_of_birth}}</span>
-                </div>
+                
               </div>
               <!-- End Information Row -->
               
@@ -76,8 +70,8 @@
                 <li class="d-flex align-center mt-15">
                   <span class="key bg-green mr-15 d-block rad-half"></span>
                   <div class="pl-15 green">
-                    <p class="fs-14 fw-bold mt-0 mb-5">From  {{ trip.source }}</p>
-                    <p class="fs-14 fw-bold mt-0 mb-5">To  {{ trip.destination }}</p>
+                    <p class="fs-14 fw-bold mt-0 mb-3">From  {{ trip.source }}</p>
+                    <p class="fs-14 fw-bold mt-0 mb-3">To  {{ trip.destination }}</p>
                     <span class="fs-13 c-grey">{{trip.start_time}}</span><span>{{trip.price}}$</span>
                   </div>
                 </li>
@@ -101,14 +95,31 @@
               <h2 class="mt-0 mb-20">Upcoming Trips</h2>
     
               <ul class="m-0">
-                {% if past_trips %}
+                {% if upcomming_trips %}
                 {% for trip in upcomming_trips %}
                 <li class="d-flex align-center mt-15">
                   <span class="key bg-blue mr-15 d-block rad-half"></span>
                   <div class="pl-15 blue">
-                    <p class="fs-14 fw-bold mt-0 mb-5">From  {{ trip.source }}</p>
-                    <p class="fs-14 fw-bold mt-0 mb-5">To  {{ trip.destination }}</p>
-                    <span class="fs-13 c-grey">{{trip.start_time}}</span><span>{{trip.price}}$</span>
+                    <p class="fs-14 fw-bold mt-0 mb-3">From  {{ trip.source }}</p>
+                    <p class="fs-14 fw-bold mt-0 mb-3">To  {{ trip.destination }}</p>
+                    {% if trip.status %}
+                    {% if trip.paid %}
+                    <p class="fs-14 fw-bold mt-0 mb-3">
+                      Status:  <span class="text-success">{{ trip.paid }}</span>
+                      <button type="button" class="btn btn-sm btn-warning">Pay</button>
+                    </p>
+                    {% else %}
+                    <p class="fs-14 fw-bold mt-0 mb-3">
+                      Status:  <span class="text-danger">{{ trip.paid }}</span>
+                      <button type="button" class="btn btn-sm btn-warning">Pay</button>
+                    </p>
+                    {% endif %}
+                  {% else %}
+                  <p class="fs-14 fw-bold mt-0 mb-3">
+                  Status:  <span class="text-danger">Pending</span>
+                </p>
+                  {% endif %}
+                      <span class="fs-13 c-grey">{{trip.start_time}}</span><span>{{trip.price}}$</span>
                 </div>
                   
                 </li>

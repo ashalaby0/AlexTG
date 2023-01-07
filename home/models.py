@@ -23,13 +23,11 @@ from django.contrib.auth.models import AbstractUser
 
 
 class User(AbstractUser):
-    photo = models.ImageField(upload_to='photo/user', blank=True)
-    city = models.CharField(max_length=50, default="not-provided")
-    country = models.CharField(max_length=50, default="not-provided")
+    photo = models.ImageField(upload_to='user/', blank=True, null=True)
+    address = models.CharField(max_length=50, null=True, blank=True)
     gender = models.CharField(max_length=6, choices=(('Male','Male'), ('Female','Female')), blank=True, null=True)
     date_of_birth = models.DateField(blank=True, null=True)
     phone = models.CharField(max_length=20)
-    # email = models.EmailField(unique=True)
 
 
 class Ride(models.Model):
@@ -75,9 +73,18 @@ class Trip(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     source = models.CharField(max_length=50)
     destination = models.CharField(max_length=50)
-    start_time = models.DateTimeField()
+    start_time = models.DateTimeField() # for testing
     price = models.IntegerField()
+    createion_date = models.DateTimeField(auto_now_add=True)
+    paid = models.BooleanField(default=False)
+    status = models.BooleanField(default=False)
 
 
     def __str__(self):
         return f'{self.source} -- {self.destination}'
+
+
+
+class Cart(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    items = models.ManyToManyField(Trip)

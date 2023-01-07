@@ -1,0 +1,35 @@
+{% extends 'base_no_footer.html' %}
+
+{% block title %}<title>Booking</title>{% endblock %}
+{% block script %}
+<script defer>
+  let noOfCartItemsUrl = "{% url 'no_of_cart_items' %}"
+</script>
+{% endblock %}
+{% block content %}
+<div class="vh-100  mt-5">
+  <form method="post" accept="{% url 'booking' %}">
+    <div class="container w-25  p-3  border border-3 rounded-3 text-center">
+      <div class="input-group mb-3">
+        {{ form.source }}
+        <div class="fs-6 text-danger">{{ form.source.errors }}</div>
+      </div>
+      <div class="input-group mb-3">
+        {{ form.destination }}
+        <div class="fs-6 text-danger">{{ form.destination.errors }}</div>
+      </div>
+      <div class="input-group mb-3">
+        {{ form.price }}
+        <div class="fs-6 text-danger">{{ form.price.errors }}</div>
+      </div>
+
+      <div class="input-group mb-3">
+        {{ form.start_time }}
+        <div class="fs-6 text-danger">{{ form.start_time.errors }}</div>
+      </div>
+        <button id="bookingAddToCart" type="submit" class="btn btn-warning w-50">Add to cart</button>
+    </div>
+  </form>
+</div>
+
+{% endblock %}

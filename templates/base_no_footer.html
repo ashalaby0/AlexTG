@@ -22,6 +22,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Montserrat&family=Sacramento&display=swap" rel="stylesheet">
 
+
     {% block head %} {% endblock %}
 
   </head>
@@ -80,6 +81,10 @@
               {% endif %}
             </li>
 
+            <li style="color: #ffc107;" class="d-flex p-3">
+              <i class="fa fa-shopping-cart me-1"></i>
+              <span id="no-of-cart-items">{{user.items.all | length}}</span>
+            </li>
           </ul>
 
         </div>

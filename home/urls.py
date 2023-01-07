@@ -48,6 +48,27 @@ urlpatterns = [
         views.booking,
         name='booking'
     ),
+    path(
+        'no_of_cart_items',
+        views.no_of_cart_items,
+        name='no_of_cart_items'
+    ),
+    path(
+        'create_payment_intent',
+        views.create_payment_intent,
+        name='create_payment_intent'
+    ),
+    path(
+        'admin_panel',
+        views.admin_panel,
+        name='admin_panel'
+    ),
+    # checkout
+    path(
+        'checkout/<int:trip_id>',
+        views.checkout,
+        name='checkout'
+    ),
     #policy
     path(
         'policy',
